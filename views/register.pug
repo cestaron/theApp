@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible' content='IE=edge')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='preconnect' href='https://fonts.gstatic.com')
+    link(href='https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&family=Titillium+Web:wght@200&display=swap' rel='stylesheet')
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet')
+    link(rel='stylesheet' href='/css/style.css')
+    title Register
+  body
+    .ta-c
+      header
+        .container
+          ul.clearfix
+            li.fl.header-btn.header-brand
+              a(href='/') CoinMarketDiscount
+      main
+        .container
+          != messages('message', locals)
+          if errors
+            each error, i in errors
+              div(class="alert alert-danger") #{error.msg}
+          .main-content.form-content
+            .form-container
+              div
+                span.dp-ib Register
+              form(method='POST', action='/user/register')
+                .form-control
+                  input(type='email' name='email' placeholder='Email' class='b-s-true')
+                .form-control
+                  input(type='username' name='username' placeholder='Username')
+                .form-control
+                  input(type='password' name='password' placeholder='Password' class='b-b-none b-s-true')
+                .form-control
+                  input(type='password' name='password2' placeholder='Password Again')
+              
+                .form-control.submit-btn
+                  input(type='submit', value='Register')
+              div
+                a.dp-ib(href='/user/login') Login
+      footer
+        .container
+          ul
+            li
+              span
+                | Get in touch
+                | contact@coinmarketdiscount.com
+            li
+              span 
+                | 2021
+                |
+            li
+              a(href='/#') About
+
+    script(src='/bower_components/jquery/dist/jquery.js')
+    script(src='/bower_components/bootstrap/dist/js/bootstrap.js')
+    script(src='/js/main.js')    

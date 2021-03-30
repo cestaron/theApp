@@ -1,0 +1,60 @@
+.form-control.form-term-checkbox
+  input(type='checkbox' name='terms')
+  a(href='/terms') I agree with terms.
+  
+  
+  if(user._id != req.user.id){
+    req.flash('danger', 'Not Authorized');
+    req.flash('/');
+  }
+  res.render('account', {
+    title: 'Account',
+    user: user,
+  });
+
+  
+  app.get('/', function(req, res){
+    User.find({}, function(err, users){
+      if(err){
+        console.log(err);
+      }else {
+        res.render('index', {
+          title:'Home',
+          users: users
+        });
+      }
+    });
+  });
+
+
+
+
+
+  .main-content.main-wallets
+    form.userWallets(method='POST' action='/user/edit/'+user._id)
+      .form-control
+        label(for='binance') binance
+        input.w-25(type='text' name='binanceWallet' value= user.binanceWallet placeholder='Deposit Wallet Address')
+        input.w-13(type='text' name='binanceUserId' value= user.binanceUserId placeholder='Exchange User Id')
+      .form-control
+        label(for='okex') okex
+        input.w-25(type='text' name='okexWallet' value= user.okexWallet placeholder='Deposit Wallet Address')
+        input.w-13(type='text' name='okexUserId' value= user.okexUserId placeholder='Exchange User Id')
+      .form-control
+        label(for='ftx') ftx
+        input.w-25(type='text' name='ftxWallet' value= user.ftxWallet placeholder='Deposit Wallet Address')
+        input.w-13(type='text' name='ftxUserId' value= user.ftxUserId placeholder='Exchange User Id')
+      .form-control
+        label(for='huobi') huobi
+        input.w-25(type='text' name='huobiWallet' value= user.huobiWallet placeholder='Deposit Wallet Address')
+        input.w-13(type='text' name='huobiUserId' value= user.huobiUserId placeholder='Exchange User Id')
+      .form-control
+        label(for='gate') gate
+        input.w-25(type='text' name='gateWallet' value= user.gateWallet placeholder='Deposit Wallet Address')
+        input.w-13(type='text' name='gateUserId' value= user.gateUserId placeholder='Exchange User Id')
+      .form-control
+        label(for='kucoin') kucoin
+        input.w-25(type='text' name='kucoinWallet' value= user.kucoinWallet placeholder='Deposit Wallet Address')
+        input.w-13(type='text' name='kucoinUserId' value= user.kucoinUserId placeholder='Exchange User Id')
+      .form-control
+        input.save-btn(type='submit' value='Save')
